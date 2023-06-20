@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista de Tarefas</title>
+    <style>
+        .completed {
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+<body>
+    <h1>Lista de Tarefas</h1>
+    <form id="Tarefa">
+        <input type="text" id="PrimeiraTarefa" placeholder="Digite uma tarefa">
+        <button type="submit">Adicionar</button>
+    </form>
+    <ol id="ListaTarefa"></ol>
+
+    <script>
+        // Função para adicionar uma tarefa à lista
+        function addTask(event) {
+            event.preventDefault();
+            
+            const taskInput = document.getElementById('PrimeiraTarefa');
+            const taskList = document.getElementById('ListaTarefa');
+            const taskName = taskInput.value.trim();
+            
+            if (taskName !== '') {
+                const newTask = document.createElement('li');
+                newTask.textContent = taskName;
+                
+                newTask.addEventListener('click', function() {
+                    newTask.classList.toggle('completed');
+                });
+                
+                taskList.appendChild(newTask);
+                taskInput.value = '';
+            }
+        }
+        
+        const taskForm = document.getElementById('Tarefa');
+        taskForm.addEventListener('submit', addTask);
+    </script>
+</body>
+</html>
